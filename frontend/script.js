@@ -1,6 +1,6 @@
 async function loadProjects() {
     try {
-        const response = await fetch('https://my-portfolio-asst.onrender.com//api/projects');
+        const response = await fetch('/api/projects');
         const projects = await response.json();
 
         const container = document.getElementById('projects-container');
@@ -31,7 +31,7 @@ loadProjects();
 
 async function loadSkills() {
     try {
-        const response = await fetch('https://my-portfolio-asst.onrender.com//api/skills');
+        const response = await fetch('/api/projects');
         const skills = await response.json();
 
         const container = document.getElementById('skills-container');
