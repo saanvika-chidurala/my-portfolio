@@ -1,0 +1,369 @@
+
+/* ---------- Base ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fffaf7;
+    color: #51443f;
+}
+
+/* ---------- Navigation ---------- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 10%;
+    background-color: #fffaf7;
+}
+
+.logo {
+    color: #c78391;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.nav-links a {
+    color: #76645e;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #c78391;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+    text-align: center;
+    padding: 110px 20px 90px;
+}
+
+.intro {
+    color: #c78391;
+    font-size: 13px;
+    letter-spacing: 3px;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-size: 55px;
+    font-weight: 600;
+    color: #51443f;
+    margin-bottom: 12px;
+}
+
+.hero h2 {
+    font-size: 21px;
+    font-weight: 400;
+    color: #c78391;
+    margin-bottom: 22px;
+}
+
+.description {
+    max-width: 520px;
+    margin: 0 auto 30px;
+    line-height: 1.8;
+    color: #84736d;
+    font-size: 15px;
+}
+
+/* ---------- Button ---------- */
+.btn {
+    display: inline-block;
+    background-color: #e8b9c2;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: #d99eaa;
+    transform: translateY(-2px);
+}
+
+/* ---------- Sections ---------- */
+.section {
+    padding: 65px 10%;
+}
+
+.section > h2 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 500;
+    color: #51443f;
+    margin-bottom: 35px;
+}
+
+/* ---------- Skills ---------- */
+.skills-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.skill-card {
+    background-color: #fff;
+    border: 1px solid #f1dfdf;
+    padding: 15px 27px;
+    border-radius: 30px;
+    color: #9e6875;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.skill-card:hover {
+    background-color: #fbecef;
+    transform: translateY(-3px);
+}
+
+/* ---------- Projects ---------- */
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.project-card {
+    background-color: #fff;
+    padding: 28px;
+    border: 1px solid #f1e5df;
+    border-radius: 18px;
+    transition: 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(170, 125, 125, 0.08);
+}
+
+.project-card h3 {
+    margin-bottom: 12px;
+    color: #b87988;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.project-card p {
+    color: #84736d;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+/* ---------- Footer ---------- */
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #a18e87;
+    font-size: 13px;
+    border-top: 1px solid #f1e5df;
+}
+
+/* ---------- Responsive Design ---------- */
+@media (max-width: 600px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 18px;
+        padding: 20px;
+    }
+
+    .nav-links a {
+        margin: 0 10px;
+    }
+
+    .hero {
+        padding: 80px 20px;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .hero h2 {
+        font-size: 18px;
+    }
+
+    .section {
+        padding: 50px 7%;
+    }
+
+    .projects-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Admin Dashboard */
+
+#project-form {
+    max-width: 600px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#project-form input,
+#project-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 16px;
+    border: 1px solid #ead9d5;
+    border-radius: 12px;
+    background-color: #fff;
+    color: #51443f;
+    font-family: inherit;
+    font-size: 15px;
+    outline: none;
+}
+
+#project-form input {
+    height: 50px;
+}
+
+#project-form textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+#project-form input:focus,
+#project-form textarea:focus {
+    border-color: #d99aaa;
+}
+
+#project-form .btn {
+    border: none;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+#admin-projects {
+    max-width: 800px;
+    margin: 25px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+#admin-projects .project-card {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 130px;
+}
+
+
+/* Minimal Pink Delete Button */
+
+#admin-projects .delete-btn {
+    background-color: #f8e5e9;
+    border: none;
+    color: #b66b7d;
+    font-size: 12px;
+    padding: 7px 14px;
+    cursor: pointer;
+    border-radius: 20px;
+    width: fit-content;
+    transition: 0.2s ease;
+}
+
+#admin-projects .delete-btn:hover {
+    background-color: #f0d1d9;
+}
+#admin-projects .edit-btn {
+    background-color: #f8e5e9;
+    border: none;
+    color: #b66b7d;
+    font-size: 12px;
+    padding: 7px 14px;
+    cursor: pointer;
+    border-radius: 20px;
+    width: fit-content;
+    transition: 0.2s ease;
+}
+
+#admin-projects .edit-btn:hover {
+    background-color: #f0d1d9;
+}
+
+#skill-form .btn {
+    background-color: #f8e5e9;
+    border: none;
+    color: #b66b7d;
+    font-size: 12px;
+    padding: 7px 14px;
+    cursor: pointer;
+    border-radius: 20px;
+    width: fit-content;
+    transition: 0.2s ease;
+}
+
+#skill-form .btn:hover {
+    background-color: #f0d1d9;
+}
+
+
+#skill-form {
+    max-width: 600px;
+    margin: 25px auto 35px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+#skill-form input {
+    flex: 1;
+    min-width: 0;
+    padding: 13px 16px;
+    border: 1px solid #ead9d5;
+    border-radius: 14px;
+    background-color: #fff;
+    color: #51443f;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+#skill-form input:focus {
+    border-color: #d99aaa;
+    box-shadow: 0 0 0 3px #f8e5e9;
+}
+
+
+#admin-skills {
+    max-width: 800px;
+    margin: 25px auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+#admin-skills .skill-item {
+    background-color: #f8e5e9;
+    color: #a65f72;
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+    border: 1px solid #f0d1d9;
+    transition: 0.2s ease;
+}
+
+#admin-skills .skill-item:hover {
+    background-color: #f0d1d9;
+}
