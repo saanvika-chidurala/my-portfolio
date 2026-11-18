@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = 5000;
+
 
 // Middleware to read JSON request bodies
 app.use(express.json());
