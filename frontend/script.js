@@ -31,7 +31,7 @@ loadProjects();
 
 async function loadSkills() {
     try {
-        const response = await fetch('/api/projects');
+        const response = await fetch('/api/skills');
         const skills = await response.json();
 
         const container = document.getElementById('skills-container');
