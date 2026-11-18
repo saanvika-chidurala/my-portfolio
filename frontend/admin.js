@@ -17,8 +17,8 @@ projectForm.addEventListener('submit', async function (event) {
     const isEditing = editingProjectId !== null;
 
     const url = isEditing
-        ? `http://localhost:5000/api/projects/${editingProjectId}`
-        : 'http://localhost:5000/api/projects';
+        ? `https://my-portfolio-asst.onrender.com//api/projects/${editingProjectId}`
+        : 'https://my-portfolio-asst.onrender.com//api/projects';
 
     try {
         const response = await fetch(url, {
@@ -59,7 +59,7 @@ projectForm.addEventListener('submit', async function (event) {
 async function loadAdminProjects() {
 
     try {
-        const response = await fetch('http://localhost:5000/api/projects');
+        const response = await fetch('https://my-portfolio-asst.onrender.com//api/projects');
 
         const projects = await response.json();
 
@@ -117,7 +117,7 @@ async function deleteProject(id) {
 
     try {
         const response = await fetch(
-            `http://localhost:5000/api/projects/${id}`,
+            `https://my-portfolio-asst.onrender.com//api/projects/${id}`,
             {
                 method: 'DELETE'
             }
@@ -159,7 +159,7 @@ skillForm.addEventListener('submit', async function(event) {
     const skill = document.getElementById('skill-name').value;
 
     try {
-        const response = await fetch('http://localhost:5000/api/skills', {
+        const response = await fetch('https://my-portfolio-asst.onrender.com//api/skills', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -188,7 +188,7 @@ skillForm.addEventListener('submit', async function(event) {
 async function loadAdminSkills() {
 
     try {
-        const response = await fetch('http://localhost:5000/api/skills');
+        const response = await fetch('https://my-portfolio-asst.onrender.com//api/skills');
 
         const skills = await response.json();
 
@@ -234,7 +234,7 @@ async function deleteSkill(skill) {
 
     try {
         const response = await fetch(
-            `http://localhost:5000/api/skills/${encodeURIComponent(skill)}`,
+            `https://my-portfolio-asst.onrender.com//api/skills/${encodeURIComponent(skill)}`,
             {
                 method: 'DELETE'
             }
