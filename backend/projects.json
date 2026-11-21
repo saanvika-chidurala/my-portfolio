@@ -8,5 +8,10 @@
         "id": 1795244916606,
         "title": "Test project",
         "description": "Hi"
+    },
+    {
+        "id": 1795247622347,
+        "title": "Data Exploration & Feature Visualization | Python, Pandas, NumPy, Matplotlib/Seaborn",
+        "description": "Engineered and extracted key data attributes from raw datasets to uncover underlying trends and patterns.\nDesigned clear visual graphs and statistical plots to interpret complex data dimensions effectively."
     }
 ]
