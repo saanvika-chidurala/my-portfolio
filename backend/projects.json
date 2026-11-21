@@ -1,8 +1,8 @@
 [
     {
         "id": 1,
-        "title": "Portfolio Website",
-        "description": "A dynamic personal portfolio website."
+        "title": "A dynamic and responsive personal portfolio website built using HTML, CSS, JavaScript, Node.js, and Express.js. The application includes an admin dashboard that allows portfolio content to be managed without manually editing frontend code.",
+        "description": "A dynamic and responsive personal portfolio website built using HTML, CSS, JavaScript, Node.js, and Express.js. The application includes an admin dashboard that allows portfolio content to be managed without manually editing frontend code."
     },
     {
         "id": 1795244916606,
