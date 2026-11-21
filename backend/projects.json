@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "title": "Portfolio Website",
+        "description": "A dynamic personal portfolio website."
+    },
+    {
+        "id": 1795244916606,
+        "title": "Test project",
+        "description": "Testing JSON storage."
+    },
+    {
+        "id": 1795246302215,
+        "title": "GitHub Test",
+        "description": "Testing GitHub project storage"
+    }
+]
