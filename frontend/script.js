@@ -52,3 +52,35 @@ async function loadSkills() {
 
 loadSkills();
 
+// Scroll Reveal Animation
+
+const revealElements = document.querySelectorAll(
+    '.projects-section, .skills-section, .contact-section'
+);
+
+revealElements.forEach(element => {
+    element.classList.add('reveal');
+});
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+        }
+
+    });
+
+}, {
+    threshold: 0.15
+});
+
+revealElements.forEach(element => {
+    observer.observe(element);
+});
+
+window.addEventListener('load', function () {
+    window.scrollTo(0, 0);
+});
