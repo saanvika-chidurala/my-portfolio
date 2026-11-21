@@ -1,38 +1,52 @@
 # Dynamic Personal Portfolio with Admin Dashboard
 
-A dynamic personal portfolio website built using HTML, CSS, JavaScript, Node.js, and Express.js. The application allows portfolio content to be managed through an admin dashboard without manually editing the frontend code.
+A dynamic and responsive personal portfolio website built using HTML, CSS, JavaScript, Node.js, and Express.js. The application includes an admin dashboard that allows portfolio content to be managed without manually editing frontend code.
 
 ## Features
 
 ### 1. Public Portfolio
-- Displays personal portfolio information.
-- Dynamically retrieves project information from the backend.
-- Displays skills and other portfolio content where configured.
+- Displays personal information and portfolio details.
+- Dynamically displays projects fetched from the backend.
+- Displays skills fetched from the backend.
 - Responsive and user-friendly interface.
+- Automatically reflects content changes made through the admin dashboard.
 
 ### 2. Admin Dashboard
 - Add new projects.
 - Edit existing projects.
 - Delete projects.
-- Manage skills through the backend.
-- Changes to projects are reflected on the public portfolio without manually modifying the HTML.
+- Add new skills.
+- Delete existing skills.
+- Manage portfolio content through a simple interface.
 
-### 3. Backend and API Integration
+### 3. Backend and REST API
 - Built using Node.js and Express.js.
 - REST APIs handle project and skill management.
-- Uses JSON for communication between frontend and backend.
-- Both the public portfolio and admin dashboard access the same backend data.
+- Uses JSON for data exchange.
+- Serves both the frontend and backend from a single application.
+
+### 4. Persistent Data Storage Using GitHub API
+- Uses the GitHub REST API to store portfolio data.
+- Project information is maintained in `backend/projects.json`.
+- Skills information is maintained in `backend/skills.json`.
+- Adding, editing, or deleting projects automatically updates the corresponding JSON file in GitHub.
+- Adding or deleting skills automatically updates the skills JSON file.
+- Data persists across backend restarts and Render redeployments.
+- GitHub Personal Access Token is stored securely using environment variables.
 
 ## Technology Stack
 
 | Technology | Purpose |
 |---|---|
 | HTML | Website structure |
-| CSS | Styling and layout |
+| CSS | Styling and responsive layout |
 | JavaScript | Frontend functionality |
 | Node.js | Backend runtime |
 | Express.js | Backend server and REST APIs |
-| Git & GitHub | Version control and source code hosting |
+| GitHub REST API | Persistent portfolio data storage |
+| Octokit | GitHub API integration |
+| dotenv | Local environment variable management |
+| Git & GitHub | Version control and repository hosting |
 | Render | Application deployment |
 
 ## Project Structure
@@ -42,6 +56,8 @@ my-portfolio/
 │
 ├── backend/
 │   ├── server.js
+│   ├── projects.json
+│   ├── skills.json
 │   ├── package.json
 │   └── package-lock.json
 │
@@ -52,6 +68,7 @@ my-portfolio/
 │   ├── admin.html
 │   └── admin.js
 │
+├── .gitignore
 └── README.md
 ```
 
@@ -77,8 +94,10 @@ my-portfolio/
 ## Running the Project Locally
 
 ### Prerequisites
-- Node.js and npm installed.
-- Git installed (optional, for cloning the repository).
+- Node.js and npm
+- Git
+- A GitHub account
+- A GitHub Personal Access Token with repository Contents read and write permissions
 
 ### Installation
 
@@ -94,22 +113,28 @@ git clone https://github.com/saanvika-chidurala/my-portfolio.git
 cd my-portfolio/backend
 ```
 
-3. Install the dependencies:
+3. Install dependencies:
 
 ```bash
 npm install
 ```
 
-4. Start the server:
+4. Create a `.env` file inside the backend directory:
+
+```env
+GITHUB_TOKEN=your_github_personal_access_token
+```
+
+5. Start the backend server:
 
 ```bash
 npm start
 ```
 
-5. Open the following URLs in your browser:
+6. Open the application:
 
-- Public Portfolio: `http://localhost:5000/`
-- Admin Dashboard: `http://localhost:5000/admin.html`
+- **Public Portfolio:** http://localhost:5000/
+- **Admin Dashboard:** http://localhost:5000/admin.html
 
 ## Deployment
 
@@ -118,38 +143,42 @@ The application is deployed on Render as a single web service.
 - **Public Portfolio:** https://my-portfolio-asst.onrender.com/
 - **Admin Dashboard:** https://my-portfolio-asst.onrender.com/admin.html
 
-The Express server serves both the frontend static files and backend API endpoints.
+### Render Configuration
 
-## Limitations
+| Setting | Value |
+|---|---|
+| Root Directory | Repository root |
+| Build Command | `cd backend && npm install` |
+| Start Command | `cd backend && npm start` |
 
-1. **In-Memory Data Storage:** Project and skill information is stored in JavaScript arrays on the backend rather than a database. Data is temporary and will be lost when the server restarts or redeploys.
+Add the following environment variable in Render:
 
-2. **No Database Persistence:** The application does not use MongoDB, MySQL, or any other database. This is intentional and keeps the implementation beginner-friendly.
+- `GITHUB_TOKEN` – GitHub Personal Access Token with repository Contents read and write permissions.
 
-3. **Limited Authentication:** The admin dashboard does not currently have a dedicated authentication system. Anyone who knows its URL may be able to access it and modify portfolio content.
+The Express server serves the frontend static files and handles backend API requests.
 
-4. **Limited Content Management:** The current implementation focuses on basic project and skill management. Advanced features such as image uploads, rich-text editing, and category-based filtering are not included.
+## Important Notes
 
-5. **Backend Availability:** The application depends on the backend server to retrieve and update content. If the backend is unavailable, dynamic features may not work.
+1. **GitHub as Data Storage:** Project and skill data is stored in JSON files in the GitHub repository rather than in a traditional database.
 
-Render Free-Tier Limitations: The free hosting service may spin down after periods of inactivity, causing the first request after inactivity to take longer.
+2. **Persistent Storage:** Updates are committed to the repository through the GitHub API, so data is not dependent on Render's temporary filesystem.
 
-Future Improvements
+3. **Security:** The GitHub token must never be exposed in frontend code or committed to the repository. The local `.env` file should be excluded through `.gitignore`.
 
-Integrate a database for permanent data storage.
+4. **GitHub Updates:** Each content modification creates a commit in the configured repository branch.
 
-Add secure admin authentication and authorization.
+5. **Authentication:** The admin dashboard currently does not include dedicated authentication. Access should be restricted before using it for sensitive or public-facing content management.
 
-Support project image uploads.
+## Future Improvements
 
-Improve skills and other portfolio content management.
+- Implement secure admin authentication and authorization.
+- Support project image uploads.
+- Add project categories and filtering.
+- Improve accessibility and responsiveness.
+- Expand portfolio content management features.
 
-Add search, filtering, and sorting options.
+## Conclusion
 
-Enhance responsiveness and accessibility.
+This project demonstrates the development of a dynamic personal portfolio with an integrated admin dashboard. It showcases frontend and backend integration, REST API development, CRUD operations, GitHub API integration, persistent data storage, and cloud deployment using Render.
 
-Conclusion
-
-This project demonstrates the development of a dynamic personal portfolio using frontend and backend technologies. It showcases REST API integration, CRUD operations, server-side data management, and deployment through Render.
-
-The application provides a simple way to manage portfolio content through an admin dashboard while keeping the public portfolio dynamically updated.
+The application provides a convenient way to manage portfolio projects and skills while automatically updating the public website.
