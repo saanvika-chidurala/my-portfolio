@@ -13,5 +13,10 @@
         "id": 1795247622347,
         "title": "Data Exploration & Feature Visualization | Python, Pandas, NumPy, Matplotlib/Seaborn",
         "description": "Engineered and extracted key data attributes from raw datasets to uncover underlying trends and patterns.\nDesigned clear visual graphs and statistical plots to interpret complex data dimensions effectively."
+    },
+    {
+        "id": 1795247642131,
+        "title": "Interactive Terminal Games (Hangman & Rock-Paper-Scissors)",
+        "description": "Developed text-based interactive games utilizing conditional structures, loops, and random library modules."
     }
 ]
