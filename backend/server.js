@@ -7,6 +7,20 @@ require('dotenv').config();
 
 const { Octokit } = require('@octokit/rest');
 
+const { createClient } = require('@supabase/supabase-js');
+
+const supabase = createClient(
+    process.env.SUPABASE_URL,
+    process.env.SUPABASE_PUBLISHABLE_KEY,
+    {
+        auth: {
+            persistSession: false,
+            autoRefreshToken: false,
+            detectSessionInUrl: false
+        }
+    }
+);
+
 const octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN
 });
@@ -128,6 +142,50 @@ async function saveSkillsToGitHub(skillsData) {
     });
 }
 
+// Verify that the request comes from the authorized admin
+async function requireAdmin(req, res, next) {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({
+            message: 'Authentication required'
+        });
+    }
+
+    const token = authHeader.split(' ')[1];
+
+    try {
+        const { data, error } = await supabase.auth.getUser(token);
+
+        if (error || !data.user) {
+            return res.status(401).json({
+                message: 'Invalid or expired login session'
+            });
+        }
+
+        const adminEmail = process.env.ADMIN_EMAIL;
+
+        if (
+            !adminEmail ||
+            data.user.email?.toLowerCase() !== adminEmail.toLowerCase()
+        ) {
+            return res.status(403).json({
+                message: 'You are not authorized to perform this action'
+            });
+        }
+
+        req.adminUser = data.user;
+        next();
+
+    } catch (error) {
+        console.error('Authentication error:', error.message);
+
+        return res.status(401).json({
+            message: 'Authentication failed'
+        });
+    }
+}
+
 const app = express();
 
 app.use(cors());
@@ -159,7 +217,7 @@ app.get('/api/skills', async (req, res) => {
 });
 
 
-app.post('/api/skills', async (req, res) => {
+app.post('/api/skills', requireAdmin, async (req, res) => {
     const { skill } = req.body;
 
     if (typeof skill !== 'string' || !skill.trim()) {
@@ -200,7 +258,7 @@ app.post('/api/skills', async (req, res) => {
 });
 
 
-app.delete('/api/skills/:skillName', async (req, res) => {
+app.delete('/api/skills/:skillName', requireAdmin, async (req, res) => {
     const skillName = decodeURIComponent(req.params.skillName);
 
     try {
@@ -254,7 +312,7 @@ app.get('/api/projects', async (req, res) => {
 // POST: Add a new project
 
 
-app.post('/api/projects', async (req, res) => {
+app.post('/api/projects', requireAdmin, async (req, res) => {
     const { title, description } = req.body;
 
     if (
@@ -293,7 +351,7 @@ app.post('/api/projects', async (req, res) => {
 
 // PUT: Update an existing project
 
-app.put('/api/projects/:id', async (req, res) => {
+app.put('/api/projects/:id', requireAdmin, async (req, res) => {
     const id = Number(req.params.id);
     const { title, description } = req.body;
 
@@ -339,7 +397,7 @@ app.put('/api/projects/:id', async (req, res) => {
 });
 
 // DELETE: Remove a project
-app.delete('/api/projects/:id', async (req, res) => {
+app.delete('/api/projects/:id',requireAdmin, async (req, res) => {
     const id = Number(req.params.id);
 
     try {
