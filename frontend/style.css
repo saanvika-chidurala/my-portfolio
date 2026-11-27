@@ -741,3 +741,59 @@ a {
 .nav-links #logout-btn[hidden] {
     display: none !important;
 }
+
+
+/* ---------- Mobile Hero Fix ---------- */
+
+@media screen and (max-width: 600px) {
+
+    .hero {
+        min-height: calc(100vh - 65px);
+        padding: 55px 7% 60px;
+        justify-content: center;
+    }
+
+    .hero h1 {
+        font-size: clamp(40px, 11vw, 58px);
+        letter-spacing: -1.5px;
+        line-height: 1.15;
+        margin-bottom: 22px;
+    }
+
+    .hero-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 25px;
+        width: 100%;
+    }
+
+    .hero-text {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .description {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .tech-line {
+        font-size: 14px;
+        line-height: 1.7;
+        margin-top: 20px;
+    }
+
+    .hero-buttons {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 12px;
+        transform: none;
+    }
+
+    .hero-buttons .btn {
+        margin: 0;
+        text-align: center;
+    }
+}
